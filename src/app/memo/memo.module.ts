@@ -6,6 +6,7 @@ import { MemoCardComponent } from './memo-card/memo-card.component';
 import { MemoGridComponent } from './memo-grid/memo-grid.component';
 import { MdCardModule, MdGridListModule, MdInputModule, MdListModule, MdButtonModule } from '@angular/material';
 import { AddMemoComponent } from './add-memo/add-memo.component';
+import { MemoSearchComponent } from './memo-search/memo-search.component';
 
 
 @NgModule({
@@ -21,11 +22,13 @@ import { AddMemoComponent } from './add-memo/add-memo.component';
   declarations: [
     MemoCardComponent,
     MemoGridComponent,
-    AddMemoComponent
+    AddMemoComponent,
+    MemoSearchComponent
   ],
   exports: [
     MemoGridComponent,
-    AddMemoComponent
+    AddMemoComponent,
+    MemoSearchComponent
   ]
 })
 export class MemoModule { }

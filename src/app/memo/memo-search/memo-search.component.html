@@ -1,0 +1,8 @@
+<md-input-container>
+    <input
+      mdInput
+      #query
+      (input)="change.emit(query.value)"
+      type="text"
+      placeholder="Filter memos...">
+  </md-input-container>
