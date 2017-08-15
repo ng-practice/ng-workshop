@@ -9,20 +9,21 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class AddMemoComponent implements OnInit {
   @Output() saveEvent = new EventEmitter<FormGroup>();
+
   memoForm: FormGroup;
-  constructor() {
-    this.memoForm = new FormGroup({
-      title: new FormControl(''),
-      text: new FormControl('')
-    }
-    );
-   }
 
   ngOnInit() {
+    this.memoForm = this.emptyForm();
   }
 
   save() {
     this.saveEvent.emit(this.memoForm);
   }
 
+  private emptyForm(): FormGroup {
+    return new FormGroup({
+      title: new FormControl(''),
+      text: new FormControl('')
+    });
+  }
 }
