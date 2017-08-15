@@ -16,8 +16,8 @@ export class AppComponent {
     new Memo('Einkaufsliste', 'Folgendes kannst du im Supermarkt holen', [])
   ];
 
-  addMemo(memo: FormGroup) {
-    this.memos.unshift(new Memo(memo.value.title, memo.value.text, []));
+  addMemo(memo: Memo) {
+    this.memos.unshift(memo);
   }
 
   applyQuery(query: string) {
