@@ -1,9 +1,11 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
+
 import { MemoModule} from './memo/memo.module';
+import { NavigationModule } from './navigation/navigation.module';
 
 
 @NgModule({
@@ -12,7 +14,9 @@ import { MemoModule} from './memo/memo.module';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MemoModule
+
+    MemoModule,
+    NavigationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
