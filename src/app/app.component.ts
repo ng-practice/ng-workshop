@@ -8,7 +8,8 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'tr';
+  query: string;
+
   memos: Memo[] = [
     new Memo('erste Notiz', 'denke daran Komponenten zu importieren und exportieren', []),
     new Memo('Angular Documentation', 'check out https://angular.io', []),
@@ -17,5 +18,9 @@ export class AppComponent {
 
   addMemo(memo: FormGroup) {
     this.memos.unshift(new Memo(memo.value.title, memo.value.text, []));
+  }
+
+  applyQuery(query: string) {
+    this.query = query;
   }
 }

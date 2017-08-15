@@ -8,6 +8,7 @@ import { MdCardModule, MdGridListModule, MdInputModule, MdListModule, MdButtonMo
 import { AddMemoComponent } from './add-memo/add-memo.component';
 import { MemoSearchComponent } from './memo-search/memo-search.component';
 
+import { MemoFilter } from './pipes/memo-filter.pipe';
 
 @NgModule({
   imports: [
@@ -23,12 +24,16 @@ import { MemoSearchComponent } from './memo-search/memo-search.component';
     MemoCardComponent,
     MemoGridComponent,
     AddMemoComponent,
-    MemoSearchComponent
+    MemoSearchComponent,
+
+    MemoFilter
   ],
   exports: [
     MemoGridComponent,
     AddMemoComponent,
-    MemoSearchComponent
+    MemoSearchComponent,
+
+    MemoFilter
   ]
 })
 export class MemoModule { }
