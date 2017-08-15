@@ -1,0 +1,26 @@
+<md-card>
+  <form [formGroup]="memoForm" (submit)="save()">
+    <md-list>
+      <md-list-item>
+  <md-input-container>
+    <input
+      mdInput
+      formControlName="title"
+      type="text"
+      placeholder="title">
+  </md-input-container>
+      </md-list-item>
+      <md-list-item>
+  <md-input-container>
+    <input
+      mdInput
+      formControlName="text"
+      type="text"
+      placeholder="text">
+    </md-input-container>
+      </md-list-item>
+    </md-list>
+    <button md-button>Speichern</button>
+    </form>
+
+</md-card>

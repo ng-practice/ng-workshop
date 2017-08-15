@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MdGridList } from '@angular/material';
 import { Memo } from '../models/memo';
 
@@ -8,11 +8,7 @@ import { Memo } from '../models/memo';
   styleUrls: ['./memo-grid.component.scss']
 })
 export class MemoGridComponent implements OnInit {
-  memos: Memo[] = [
-    new Memo('erste Notiz', 'denke daran Komponenten zu importieren und exportieren', []),
-    new Memo('Angular Documentation', 'check out https://angular.io', []),
-    new Memo('Einkaufsliste', 'Folgendes kannst du im Supermarkt holen', [])
-  ];
+  @Input() memosInput;
 
   constructor() { }
 

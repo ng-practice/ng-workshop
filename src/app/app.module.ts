@@ -5,10 +5,10 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { MemoModule} from './memo/memo.module';
 
+
 @NgModule({
   declarations: [
-    AppComponent
-  ],
+    AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
