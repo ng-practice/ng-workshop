@@ -1,5 +1,7 @@
 <md-card>
-  <form [formGroup]="memoForm" (submit)="save()">
+  <form
+    [formGroup]="memoForm"
+    (ngSubmit)="emitCreatedBook()">
     <md-list>
       <md-list-item>
   <md-input-container>

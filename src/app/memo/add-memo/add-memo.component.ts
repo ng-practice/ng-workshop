@@ -8,7 +8,7 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./add-memo.component.scss']
 })
 export class AddMemoComponent implements OnInit {
-  @Output() saveEvent = new EventEmitter<FormGroup>();
+  @Output() create = new EventEmitter<FormGroup>();
 
   memoForm: FormGroup;
 
@@ -16,8 +16,8 @@ export class AddMemoComponent implements OnInit {
     this.memoForm = this.emptyForm();
   }
 
-  save() {
-    this.saveEvent.emit(this.memoForm);
+  emitCreatedBook() {
+    this.create.emit(this.memoForm);
   }
 
   private emptyForm(): FormGroup {
