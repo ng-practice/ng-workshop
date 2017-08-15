@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { MdGridList } from '@angular/material';
 import { Memo } from '../models/memo';
 
 @Component({

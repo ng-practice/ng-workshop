@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { MdCard } from '@angular/material';
 
 import { Memo } from '../models/memo';
 
