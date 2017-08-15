@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { Memo } from '../models/memo';
 
@@ -8,7 +8,7 @@ import { Memo } from '../models/memo';
   styleUrls: ['./memo-grid-element.component.scss']
 })
 export class MemoGridElementComponent implements OnInit {
-  memo: Memo = new Memo('erste Notiz', 'denke daran Komponenten zu importieren und exportieren', []);
+  @Input() memo: Memo;
   constructor() { }
 
   ngOnInit() {
