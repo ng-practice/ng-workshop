@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { Memo } from '../models/memo';
 
@@ -15,6 +15,7 @@ export class AddMemoComponent implements OnInit {
 
   ngOnInit() {
     this.memoForm = this.emptyForm();
+    console.log(this.memoForm);
   }
 
   emitCreatedBook() {
@@ -29,8 +30,9 @@ export class AddMemoComponent implements OnInit {
 
   private emptyForm(): FormGroup {
     return new FormGroup({
-      title: new FormControl(''),
+      title: new FormControl('', [Validators.required, Validators.minLength(3)]),
       text: new FormControl('')
     });
+
   }
 }
