@@ -5,4 +5,8 @@ md-card{
   md-input-container {
     width: 100%;
   }
+
+  input.scoredout{
+    text-decoration: line-through;
+  }
 }

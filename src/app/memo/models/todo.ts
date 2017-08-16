@@ -1,5 +1,7 @@
 export class Todo {
-  checked = false;
 
-  constructor(public task: string, public id: string) {}
+  constructor(
+    public task: string,
+    public id: string,
+    public checked: boolean = false) {}
 }

@@ -1,5 +1,7 @@
+import { Todo } from '../models/todo';
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
+import { MdButton, MdCheckbox } from '@angular/material';
 
 import { Memo } from '../models/memo';
 
@@ -12,10 +14,12 @@ export class AddMemoComponent implements OnInit {
   @Output() create = new EventEmitter<Memo>();
 
   memoForm: FormGroup;
+  todosArray: FormArray = new FormArray([]);
+
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
     this.memoForm = this.emptyForm();
-    console.log(this.memoForm);
   }
 
   emitCreatedBook() {
@@ -25,14 +29,33 @@ export class AddMemoComponent implements OnInit {
       []
     );
 
+    memo.todos = this.todosArray.controls.map(todo =>
+      new Todo(
+        todo.value.task,
+        this.todosArray.controls.indexOf(todo).toString(),
+        todo.value.checked
+      )
+    );
+
     this.create.emit(memo);
   }
 
   private emptyForm(): FormGroup {
-    return new FormGroup({
+    this.todosArray = new FormArray([]);
+    return this.fb.group({
       title: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      text: new FormControl('')
+      text: new FormControl(''),
+      todos: this.todosArray
     });
+  }
 
+  private addTodo() {
+    this.todosArray.push(new FormGroup({
+      checked: new FormControl(false),
+      task: new FormControl('')}));
+  }
+
+  private removeTodo(index: number) {
+    this.todosArray.removeAt(index);
   }
 }

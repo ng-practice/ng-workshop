@@ -1,41 +1,40 @@
 <md-card>
-  <form
-    novalidate
-    [formGroup]="memoForm"
-    (ngSubmit)="emitCreatedBook()">
-    <md-list>
+  <form novalidate [formGroup]="memoForm" (ngSubmit)="emitCreatedBook()">
 
-  <md-input-container>
-    <input
 
-      mdInput
-      formControlName="title"
-      type="text"
-      placeholder="title">
+    <md-input-container>
+      <input mdInput formControlName="title" type="text" placeholder="title">
       <!--<md-error *ngIf="memoForm.controls.title.hasError('required')">
           Title is <strong>required</strong>
         </md-error>
       -->
       <md-error *ngIf="memoForm.controls['title'].hasError('required')">
-          Title is <strong>required</strong>
+        Title is <strong>required</strong>
       </md-error>
       <md-error *ngIf="memoForm.controls['title'].hasError('minlength')">
-          Title needs at least <strong>{{memoForm.controls['title'].errors.minlength.requiredLength}}</strong> characters
-    </md-error>
-  </md-input-container>
-
-  <md-input-container>
-    <textarea
-      mdInput
-      formControlName="text"
-
-      type="text"
-      placeholder="text">
-    </textarea>
+        Title needs at least <strong>{{memoForm.controls['title'].errors.minlength.requiredLength}}</strong> characters
+      </md-error>
     </md-input-container>
 
-    </md-list>
+    <md-input-container>
+      <textarea mdInput formControlName="text" type="text" placeholder="text">
+    </textarea>
+    </md-input-container>
+    <div formArrayName="todos">
+      <div *ngFor="let todo of memoForm.controls['todos'].controls; let i = index">
+        <div [formGroupName]="i">
+
+          <md-input-container>
+            <md-checkbox #done formControlName="checked" mdPrefix></md-checkbox>
+            <input [class.scoredout]=done.checked mdInput formControlName="task" type="text" placeholder="...todo">
+            <button type="button" md-icon-button (click)="removeTodo(i)" mdSuffix>x</button>
+          </md-input-container>
+        </div>
+
+      </div>
+      <button type="button" md-mini-fab (click)="addTodo()">+</button>
+    </div>
     <button md-button [disabled]="memoForm.invalid">Speichern</button>
-    </form>
+  </form>
 
 </md-card>
