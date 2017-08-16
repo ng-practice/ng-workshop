@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { MdCard } from '@angular/material';
 
 import { Memo } from '../models/memo';
@@ -10,4 +11,9 @@ import { Memo } from '../models/memo';
 })
 export class MemoCardComponent {
   @Input() memo: Memo;
+  @Output() deleted = new EventEmitter< Memo >();
+
+  removeMemo(memo: Memo) {
+    this.deleted.emit(memo);
+  }
 }

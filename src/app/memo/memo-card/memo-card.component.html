@@ -4,4 +4,5 @@
 <ul>
 <li *ngFor="let todo of memo.todos">{{todo.task}}</li>
 </ul>
+<button md-raised-button (click)="removeMemo(memo)">remove</button>
 </md-card>

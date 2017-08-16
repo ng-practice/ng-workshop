@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 
 import { MemoModule} from './memo/memo.module';
 import { NavigationModule } from './navigation/navigation.module';
+import { MemoService } from './memo/core/memo.service';
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import { NavigationModule } from './navigation/navigation.module';
     MemoModule,
     NavigationModule
   ],
-  providers: [],
+  providers: [MemoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

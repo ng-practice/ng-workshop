@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Memo } from './memo/models/memo';
 import { FormGroup } from '@angular/forms';
+import { MemoService } from './memo/core/memo.service';
 
 @Component({
   selector: 'tr-root',
@@ -9,18 +10,21 @@ import { FormGroup } from '@angular/forms';
 })
 export class AppComponent {
   query: string;
+  memos: Memo[];
 
-  memos: Memo[] = [
-    new Memo('erste Notiz', 'denke daran Komponenten zu importieren und exportieren', []),
-    new Memo('Angular Documentation', 'check out https://angular.io', []),
-    new Memo('Einkaufsliste', 'Folgendes kannst du im Supermarkt holen', [])
-  ];
-
-  addMemo(memo: Memo) {
-    this.memos.unshift(memo);
+  constructor(private memoService: MemoService) {
+    this.memos = memoService.memos;
   }
 
   applyQuery(query: string) {
     this.query = query;
+  }
+
+  addMemo(memo: Memo) {
+    this.memoService.addMemo(memo);
+  }
+
+  deleteMemo(memo: Memo) {
+    this.memoService.deleteMemo(memo);
   }
 }
