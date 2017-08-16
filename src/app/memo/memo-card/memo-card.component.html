@@ -1,4 +1,7 @@
 <md-card>
 <h2>{{memo.title}}</h2>
 <p>{{memo.text}}</p>
+<ul>
+<li *ngFor="let todo of memo.todos">{{todo.task}}</li>
+</ul>
 </md-card>
