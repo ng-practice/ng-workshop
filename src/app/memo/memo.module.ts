@@ -10,6 +10,8 @@ import { MemoSearchComponent } from './memo-search/memo-search.component';
 
 import { MemoFilter } from './pipes/memo-filter.pipe';
 import { PinboardComponent } from './pinboard/pinboard.component';
+import { MemoRoutingModule } from './memo.routing.module';
+import { MemoEditComponent } from './memo-edit/memo-edit.component';
 
 @NgModule({
   imports: [
@@ -21,7 +23,8 @@ import { PinboardComponent } from './pinboard/pinboard.component';
     MdButtonModule,
     MdCheckboxModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MemoRoutingModule
   ],
   declarations: [
     MemoCardComponent,
@@ -31,14 +34,13 @@ import { PinboardComponent } from './pinboard/pinboard.component';
 
     MemoFilter,
 
-    PinboardComponent
+    PinboardComponent,
+
+    MemoEditComponent
   ],
   exports: [
-    MemoGridComponent,
-    AddMemoComponent,
-    MemoSearchComponent,
-
-    MemoFilter
+    PinboardComponent,
+    MemoSearchComponent
   ]
 })
 export class MemoModule { }

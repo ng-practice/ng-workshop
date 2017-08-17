@@ -39,11 +39,18 @@ export class AddMemoComponent implements OnInit {
   componentHasFocus = false;
 
   constructor(
-    private fb: FormBuilder,
-    private memoService: MemoService ) {}
+    public memoService: MemoService ) {}
 
   ngOnInit() {
     this.memoForm = this.emptyForm();
+  }
+
+  setTodos(): Todo[] {
+    return this.todosArray.controls.map(todo => {
+      const t: Todo = todo.value;
+      t.id = this.todosArray.controls.indexOf(todo).toString();
+      return t;
+    });
   }
 
   emitCreatedBook(form: NgForm) {
@@ -52,18 +59,14 @@ export class AddMemoComponent implements OnInit {
       this.memoForm.controls.text.value, []
     );
 
-    memo.todos = this.todosArray.controls.map(todo => {
-      const t: Todo = todo.value;
-      t.id = this.todosArray.controls.indexOf(todo).toString();
-      return t;
-    });
+    memo.todos = this.setTodos();
 
     this.create.emit(memo);
     this.memoForm = this.emptyForm();
     form.resetForm();
   }
 
-  private emptyForm(): FormGroup {
+  emptyForm(): FormGroup {
     this.todosArray = new FormArray([]);
     return new FormGroup({
       title: new FormControl('', [Validators.required, Validators.minLength(3)]),

@@ -1,2 +1,4 @@
+
 <tr-add-memo (create)=addMemo($event)></tr-add-memo>
 <tr-memo-grid [memosInput]="memos | memoFilter:query"></tr-memo-grid>
+<tr-memo-edit (edited)=editMemo($event)></tr-memo-edit>

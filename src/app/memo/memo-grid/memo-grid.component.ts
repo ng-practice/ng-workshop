@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { MdGridList } from '@angular/material';
 import { Memo } from '../models/memo';
 import { MemoService } from '../core/memo.service';
@@ -8,12 +8,17 @@ import { MemoService } from '../core/memo.service';
   templateUrl: './memo-grid.component.html',
   styleUrls: ['./memo-grid.component.scss']
 })
-export class MemoGridComponent implements OnInit {
+export class MemoGridComponent implements OnInit, OnChanges {
   @Input() memosInput;
 
   constructor(private memoService: MemoService) { }
 
   ngOnInit() {
+
+  }
+
+  ngOnChanges() {
+    console.log(this.memosInput);
   }
 
   removeMemo(memo: Memo) {

@@ -11,8 +11,10 @@ import { MemoService } from './memo/core/memo.service';
 export class AppComponent {
   query: string;
 
+  constructor(private memoService: MemoService) { }
+
   applyQuery(query: string) {
-    this.query = query;
+    this.memoService.query = query;
   }
 
 }
