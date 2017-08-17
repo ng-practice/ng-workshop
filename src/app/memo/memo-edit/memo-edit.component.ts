@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 
 import { Memo } from '../models/memo';
@@ -16,7 +16,10 @@ memo: Memo;
 
 @Output() editing = new EventEmitter < boolean >();
 @Output() edited = new EventEmitter< Memo >();
-constructor(memoService: MemoService, private ar: ActivatedRoute) {
+constructor(
+  memoService: MemoService,
+  private ar: ActivatedRoute,
+  private router: Router) {
   super(memoService);
 }
 
@@ -26,7 +29,7 @@ ngOnInit() {
   this.memo = this.memoService.getById(this.ar.snapshot.params['id']);
   if (this.memo) {
     this.memoService.editing = true;
-  }
+
   this.memo.todos.map(todo => {
     this.todosArray.push (new FormGroup({
       checked: new FormControl(todo.checked),
@@ -37,6 +40,9 @@ ngOnInit() {
 
 this.memoForm.controls.title.setValue(this.memo.title);
 this.memoForm.controls.text.setValue(this.memo.text);
+} else {
+  this.router.navigate(['/pinboard']);
+}
 }
 
 save(form) {
