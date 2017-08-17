@@ -9,6 +9,7 @@ import { AddMemoComponent } from './add-memo/add-memo.component';
 import { MemoSearchComponent } from './memo-search/memo-search.component';
 
 import { MemoFilter } from './pipes/memo-filter.pipe';
+import { PinboardComponent } from './pinboard/pinboard.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,9 @@ import { MemoFilter } from './pipes/memo-filter.pipe';
     AddMemoComponent,
     MemoSearchComponent,
 
-    MemoFilter
+    MemoFilter,
+
+    PinboardComponent
   ],
   exports: [
     MemoGridComponent,

@@ -1,3 +1,4 @@
+import { AppRoutingModule } from './app.routing.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,9 +16,9 @@ import { MemoService } from './memo/core/memo.service';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-
     MemoModule,
-    NavigationModule
+    NavigationModule,
+    AppRoutingModule
   ],
   providers: [MemoService],
   bootstrap: [AppComponent]
