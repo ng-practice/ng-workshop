@@ -64,6 +64,7 @@ export class AddMemoComponent implements OnInit {
     this.create.emit(memo);
     this.memoForm = this.emptyForm();
     form.resetForm();
+    this.componentHasFocus = false;
   }
 
   emptyForm(): FormGroup {
@@ -76,11 +77,11 @@ export class AddMemoComponent implements OnInit {
   }
 
   private addTodo() {
-    console.log('add')
     this.todosArray.push(new FormGroup({
       checked: new FormControl(false),
       task: new FormControl('', Validators.required)
     }));
+
   }
 
   private removeTodo(index: number) {
