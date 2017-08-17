@@ -1,7 +1,4 @@
 import {
-  Todo
-} from '../models/todo';
-import {
   Component,
   OnInit,
   EventEmitter,
@@ -22,6 +19,9 @@ import {
 } from '@angular/material';
 
 import {
+  Todo
+} from '../models/todo';
+import {
   Memo
 } from '../models/memo';
 import { MemoService } from '../core/memo.service';
@@ -40,8 +40,8 @@ export class AddMemoComponent implements OnInit {
 
   constructor(
     public memoService: MemoService ) {}
-
   ngOnInit() {
+
     this.memoForm = this.emptyForm();
   }
 
@@ -81,7 +81,6 @@ export class AddMemoComponent implements OnInit {
       checked: new FormControl(false),
       task: new FormControl('', Validators.required)
     }));
-
   }
 
   private removeTodo(index: number) {

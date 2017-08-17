@@ -1,6 +1,6 @@
 <md-card>
 <h2><a [routerLink]="[ {outlets: { sidebar: ['edit', memo.id]} }]">{{memo.title}}</a></h2>
-<p>{{memo.text}}</p>
+<p [innerHTML]="memo.text | linkify"></p>
 <ul>
 <li *ngFor="let todo of memo.todos" [class.scoredout]="todo.checked">{{todo.task}}</li>
 </ul>

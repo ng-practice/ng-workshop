@@ -1,5 +1,4 @@
-<md-grid-list [cols]=2 >
-  <md-grid-tile *ngFor="let memosElement of memosInput">
-    <tr-memo-card (deleted)=removeMemo($event) [memo]="memosElement"></tr-memo-card>
-  </md-grid-tile>
-</md-grid-list>
+<div >
+    <tr-memo-card *ngFor="let memosElement of memosInput" (deleted)=removeMemo($event) [memo]="memosElement"></tr-memo-card>
+</div>
+

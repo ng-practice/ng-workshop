@@ -1,8 +1,6 @@
 <md-card>
     <md-card-title>Add Memo</md-card-title>
   <form novalidate [formGroup]="memoForm" (ngSubmit)="emitCreatedBook(form)" #form="ngForm">
-
-
     <md-input-container>
       <input
         mdInput
@@ -21,11 +19,12 @@
     <md-input-container>
       <textarea
         mdInput
+        trLinkify
         formControlName="text"
         type="text"
         placeholder="text">
     </textarea>
-    </md-input-container>
+  </md-input-container>
     <div formArrayName="todos">
       <div *ngFor="let todo of memoForm.controls.todos.controls; let i = index">
         <div [formGroupName]="i">

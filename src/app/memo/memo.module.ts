@@ -19,6 +19,8 @@ import { MemoFilter } from './pipes/memo-filter.pipe';
 import { PinboardComponent } from './pinboard/pinboard.component';
 import { MemoRoutingModule } from './memo.routing.module';
 import { MemoEditComponent } from './memo-edit/memo-edit.component';
+import { UtilitiesModule } from './utilities/utilities.module';
+import { Linkify } from './pipes/linkify.pipe';
 
 @NgModule({
   imports: [
@@ -32,6 +34,7 @@ import { MemoEditComponent } from './memo-edit/memo-edit.component';
     MdSidenavModule,
     FormsModule,
     ReactiveFormsModule,
+    UtilitiesModule,
     MemoRoutingModule
   ],
   declarations: [
@@ -41,7 +44,7 @@ import { MemoEditComponent } from './memo-edit/memo-edit.component';
     MemoSearchComponent,
 
     MemoFilter,
-
+    Linkify,
     PinboardComponent,
 
     MemoEditComponent
