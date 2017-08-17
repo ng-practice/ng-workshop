@@ -1,3 +1,4 @@
+<h2>Edit</h2>
 <form novalidate [formGroup]="memoForm" (ngSubmit)="save(form)" #form="ngForm">
 
   <md-input-container>
@@ -51,6 +52,6 @@
     </div>
     <button type="button" md-mini-fab (click)="addTodo()">+</button>
   </div>
-  <button md-button [disabled]="memoForm.invalid">Speichern</button>
-  <button md-button (click)="abort()">Abbrechen</button>
+  <button md-button (click)="save()" [routerLink]="['/pinboard']" [disabled]="memoForm.invalid">Speichern</button>
+  <button md-button [routerLink]="['/pinboard']">Abbrechen</button>
 </form>

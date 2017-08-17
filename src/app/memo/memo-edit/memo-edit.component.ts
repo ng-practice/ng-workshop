@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 
@@ -11,31 +11,44 @@ import { MemoService } from '../core/memo.service';
   templateUrl: './memo-edit.component.html',
   styleUrls: ['./memo-edit.component.scss']
 })
-export class MemoEditComponent extends AddMemoComponent implements OnInit {
+export class MemoEditComponent extends AddMemoComponent implements OnInit, OnDestroy {
 memo: Memo;
 
+@Output() editing = new EventEmitter < boolean >();
 @Output() edited = new EventEmitter< Memo >();
 constructor(memoService: MemoService, private ar: ActivatedRoute) {
   super(memoService);
 }
 
 ngOnInit() {
+  console.log('init');
   this.memoForm = this.emptyForm();
   this.memo = this.memoService.getById(this.ar.snapshot.params['id']);
-  this.todosArray = new FormArray(this.memo.todos.map(todo => {
-    return new FormGroup({
+  if (this.memo) {
+    this.memoService.editing = true;
+  }
+  this.memo.todos.map(todo => {
+    this.todosArray.push (new FormGroup({
       checked: new FormControl(todo.checked),
       task: new FormControl(todo.task, Validators.required)
-    });
-  })
-);
+    })
+  );
+  });
+
 this.memoForm.controls.title.setValue(this.memo.title);
 this.memoForm.controls.text.setValue(this.memo.text);
 }
 
 save(form) {
-  this.memo = new Memo(this.memoForm.controls.title.value, this.memoForm.controls.text.value, this.setTodos());
-  this.edited.emit(this.memo);
+  const memo = new Memo(this.memoForm.controls.title.value, this.memoForm.controls.text.value, this.setTodos());
+  memo.id = this.memo.id;
+  this.memoService.editMemo(memo);
+
 }
+
+ngOnDestroy() {
+  this.memoService.editing = false;
+}
+
 
 }

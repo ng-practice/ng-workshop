@@ -15,7 +15,10 @@ import { Subject } from 'rxjs/Subject';
 export class MemoService {
   memos: Memo[];
   queryObservable = new Subject< string >();
+  editingObservable = new Subject< boolean >();
   _query = '';
+
+  _editing = false;
 
   constructor() {
     this.memos = [
@@ -24,7 +27,7 @@ export class MemoService {
       new Memo('Einkaufsliste', 'Folgendes kannst du im Supermarkt holen', [])
     ];
     this.memos.forEach(memo => {
-      memo.id = Math.random().toString();
+      memo.id = Math.random().toString().substr(3);
     });
   }
   addMemo(memo: Memo) {
@@ -36,7 +39,9 @@ export class MemoService {
   }
 
   editMemo(memo) {
+    console.log(memo.id);
     this.memos[this.memos.indexOf(this.memos.find(m => m.id === memo.id))] = memo;
+    this.editing = false;
   }
 
   getById(id: String) {
@@ -47,9 +52,19 @@ export class MemoService {
     return this.queryObservable;
   }
 
+  edit() {
+    return this.editingObservable;
+  }
+
   set query(q) {
     this.queryObservable.next(q);
   }
+
+  set editing(editing) {
+    this.editingObservable.next(editing);
+  }
+
+
 
 
 }

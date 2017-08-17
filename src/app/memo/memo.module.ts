@@ -4,7 +4,14 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { MemoCardComponent } from './memo-card/memo-card.component';
 import { MemoGridComponent } from './memo-grid/memo-grid.component';
-import { MdCardModule, MdGridListModule, MdInputModule, MdListModule, MdButtonModule, MdCheckboxModule } from '@angular/material';
+import {
+  MdCardModule,
+  MdGridListModule,
+  MdInputModule,
+  MdListModule,
+  MdButtonModule,
+  MdCheckboxModule,
+  MdSidenavModule } from '@angular/material';
 import { AddMemoComponent } from './add-memo/add-memo.component';
 import { MemoSearchComponent } from './memo-search/memo-search.component';
 
@@ -22,6 +29,7 @@ import { MemoEditComponent } from './memo-edit/memo-edit.component';
     MdInputModule,
     MdButtonModule,
     MdCheckboxModule,
+    MdSidenavModule,
     FormsModule,
     ReactiveFormsModule,
     MemoRoutingModule
@@ -40,7 +48,8 @@ import { MemoEditComponent } from './memo-edit/memo-edit.component';
   ],
   exports: [
     PinboardComponent,
-    MemoSearchComponent
+    MemoSearchComponent,
+    MemoEditComponent
   ]
 })
 export class MemoModule { }

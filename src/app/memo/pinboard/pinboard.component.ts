@@ -1,7 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Memo } from '../models/memo';
 import { MemoService } from '../core/memo.service';
 import { ToolbarComponent } from '../../navigation/toolbar/toolbar.component';
+import { MdSidenavContainer, MdSidenav } from '@angular/material';
+
 
 @Component({
   selector: 'tr-pinboard',
@@ -13,6 +15,7 @@ export class PinboardComponent implements OnInit {
 
 
   query: String;
+  @ViewChild('sidenav') sidenav: MdSidenav;
   constructor(private memoService: MemoService) {
     this.memos = memoService.memos;
   }
@@ -21,6 +24,10 @@ export class PinboardComponent implements OnInit {
     this.memoService.search()
     .subscribe(query => {
       this.query = query;
+    });
+    this.memoService.edit()
+    .subscribe(editing => {
+      this.sidenav.toggle(editing);
     });
   }
 

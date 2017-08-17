@@ -1,8 +1,8 @@
 <md-card>
-<h2>{{memo.title}}</h2>
+<h2><a [routerLink]="[ {outlets: { sidebar: ['edit', memo.id]} }]">{{memo.title}}</a></h2>
 <p>{{memo.text}}</p>
 <ul>
-<li *ngFor="let todo of memo.todos">{{todo.task}}</li>
+<li *ngFor="let todo of memo.todos" [class.scoredout]="todo.checked">{{todo.task}}</li>
 </ul>
 <button md-raised-button (click)="removeMemo(memo)">remove</button>
 </md-card>
