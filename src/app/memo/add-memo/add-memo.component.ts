@@ -24,6 +24,7 @@ import {
 import {
   Memo
 } from '../models/memo';
+import { MemoService } from '../core/memo.service';
 
 @Component({
   selector: 'tr-add-memo',
@@ -35,8 +36,11 @@ export class AddMemoComponent implements OnInit {
 
   memoForm: FormGroup;
   todosArray: FormArray = new FormArray([]);
+  componentHasFocus = false;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private memoService: MemoService ) {}
 
   ngOnInit() {
     this.memoForm = this.emptyForm();
@@ -77,5 +81,14 @@ export class AddMemoComponent implements OnInit {
 
   private removeTodo(index: number) {
     this.todosArray.removeAt(index);
+  }
+
+  private abort() {
+    this.memoForm = this.emptyForm();
+    this.setFocus(false);
+  }
+
+  private setFocus(hasFocus: boolean) {
+    this.componentHasFocus = hasFocus;
   }
 }
