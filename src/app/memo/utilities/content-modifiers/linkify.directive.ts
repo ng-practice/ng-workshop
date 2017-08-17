@@ -4,7 +4,7 @@ import { Directive, Renderer2, ElementRef, OnInit, HostListener } from '@angular
   selector: '[trLinkify]'
 })
 export class LinkifyDirective implements OnInit {
-  urls = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])\s/ig;
+  urls = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
   hyperLinks = /<a.+<\/a>/;
 
   constructor(
