@@ -12,7 +12,7 @@ export class AuthorizationMiddleware {
     this.init();
    }
 
-  rejectOnPostUnauthenticated = (req: Request, res: Response, next) => {
+  rejectOnAlteringUnauthenticated = (req: Request, res: Response, next) => {
 
     if (req.method === 'GET') {
       next();
@@ -28,7 +28,7 @@ export class AuthorizationMiddleware {
   }
 
   init() {
-    this.router.use('/memo/:id', this.rejectOnPostUnauthenticated);
+    this.router.use('/memo/:id', this.rejectOnAlteringUnauthenticated);
   }
 }
 const authMiddleware = new AuthorizationMiddleware();
