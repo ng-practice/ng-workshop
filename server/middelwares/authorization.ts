@@ -2,13 +2,9 @@ import { Router, Request, Response } from 'express';
 import { AuthController } from '../auth/controller';
 const jwt = require('jsonwebtoken');
 
-
-
 export class AuthorizationMiddleware {
-  router: Router;
   secret = 'sicher';
-  constructor() {
-    this.router = Router();
+  constructor(public instance: Router = Router()) {
     this.init();
    }
 
@@ -28,10 +24,7 @@ export class AuthorizationMiddleware {
   }
 
   init() {
-    this.router.use('/memo/:id', this.rejectOnAlteringUnauthenticated);
+    this.instance.use('/memo/:id', this.rejectOnAlteringUnauthenticated);
   }
 }
-const authMiddleware = new AuthorizationMiddleware();
-authMiddleware.init();
 
-export default authMiddleware.router;
