@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Memo } from './memo/models/memo';
+import {Memo} from './memo/models/memo';
 import { FormGroup } from '@angular/forms';
 import { MemoService } from './memo/core/memo.service';
 
@@ -11,7 +11,15 @@ import { MemoService } from './memo/core/memo.service';
 export class AppComponent {
   query: string;
 
-  constructor(private memoService: MemoService) { }
+  constructor(private memoService: MemoService) {
+    this.memoService.getAllFromApi().subscribe((memos: Memo[]) => {
+      memos.forEach(memo => {
+        this.memoService.memos.push(memo);
+      });
+      //this.memoService.memos = memos;
+      console.log(this.memoService.memos);
+    });
+  }
 
   applyQuery(query: string) {
     this.memoService.query = query;

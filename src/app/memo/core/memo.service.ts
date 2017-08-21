@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import {
   Injectable
 } from '@angular/core';
@@ -13,23 +14,21 @@ import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class MemoService {
-  memos: Memo[];
+  memos: Memo[] = [];
   queryObservable = new Subject< string >();
   editingObservable = new Subject< boolean >();
   _query = '';
 
   _editing = false;
 
-  constructor() {
-    this.memos = [
-      new Memo('erste Notiz', 'denke daran Komponenten zu importieren und exportieren', []),
-      new Memo('Angular Documentation', 'check out https://angular.io', []),
-      new Memo('Einkaufsliste', 'Folgendes kannst du im Supermarkt holen', [])
-    ];
-    this.memos.forEach(memo => {
-      memo.id = Math.random().toString().substr(3);
-    });
+  constructor(private http: HttpClient) {
+
   }
+
+  getAllFromApi() {
+    return this.http.get('http://localhost:4280/memos');
+  }
+
   addMemo(memo: Memo) {
     this.memos.unshift(memo);
   }

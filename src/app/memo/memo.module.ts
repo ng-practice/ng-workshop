@@ -1,3 +1,5 @@
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -34,6 +36,8 @@ import { Linkify } from './pipes/linkify.pipe';
     MdSidenavModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpModule,
+    HttpClientModule,
     UtilitiesModule,
     MemoRoutingModule
   ],
