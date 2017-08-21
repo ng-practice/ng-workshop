@@ -1,47 +1,47 @@
 import { Router, Request, Response } from 'express';
+import { MemoDatabase } from '../database/memo-database';
 
 
-const router = Router();
 
-export const MemosController = router;
+export class MemosController {
 
 
-router.get('/memos', all);
-router.get('/memos/:query', search);
-router.get('/memo/:id', single);
-router.post('/memo/:id', create);
-router.put('/memo/:id', update);
+constructor(private memoDatabase: MemoDatabase, public instance: Router = Router() ) {
+  this.init();
+ }
 
-router.delete('/memo/:id', remove);
+init() {
+  this.instance.get('/memos', this.all);
+  this.instance.get('/memos/:query', this.search);
+  this.instance.get('/memo/:id', this.single);
+  this.instance.post('/memo/:id', this.create);
+  this.instance.put('/memo/:id', this.update);
+  this.instance.delete('/memo/:id', this.remove);
+}
 
-function single(req: Request, res: Response) {
+single = (req: Request, res: Response) => {
 
 }
 
-function all(req: Request, res: Response) {
+all = (req: Request, res: Response) => {
+  res.status(200).send(this.memoDatabase.getAll());
+}
+
+search = (req: Request, res: Response) => {
 
 }
 
-function search(req: Request, res: Response) {
-
-}
-
-function create(req: Request, res: Response) {
+create = (req: Request, res: Response) => {
   res.status(201).send('created');
 }
 
-function update(req: Request, res: Response) {
+update = (req: Request, res: Response) => {
 
 }
 
-function remove(req: Request, res: Response) {
+remove = (req: Request, res: Response) => {
 
 }
 
-// Get /memos (all)
-// Get /memo/:id
-// Push /memo/:id
-// Put /memo/:id
+}
 
-// POST /user/:email Create User
-// GET /user/id

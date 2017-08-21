@@ -186,6 +186,10 @@
   dependencies:
     "@types/jasmine" "*"
 
+"@types/lokijs@^1.2.30":
+  version "1.2.30"
+  resolved "https://registry.yarnpkg.com/@types/lokijs/-/lokijs-1.2.30.tgz#ad7297c7766e94fe84a821f7a1a2916ed87ca55c"
+
 "@types/node@^6.0.46", "@types/node@~6.0.60":
   version "6.0.86"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.86.tgz#ae0fff49f6fc13d7ddcd322362581c52e8755ff9"
@@ -3144,6 +3148,10 @@ log4js@^0.6.31:
   dependencies:
     readable-stream "~1.0.2"
     semver "~4.3.3"
+
+lokijs@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/lokijs/-/lokijs-1.5.0.tgz#99e403d6a89e47e11ed0c5d499fb55a0603d5efc"
 
 longest@^1.0.1:
   version "1.0.1"
