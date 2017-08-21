@@ -3,16 +3,24 @@ import { Directive, Renderer2, ElementRef, OnInit, HostListener } from '@angular
 @Directive({
   selector: '[trLinkify]'
 })
-export class LinkifyDirective implements OnInit {
+export class LinkifyDirective {
   urls = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
-  hyperLinks = /<a.+<\/a>/;
+  hyperLinks = /<a.+><\/a>/;
+  fromHyperLinkToURL = /(<a.+href=".+" target="_blank">)(.+)(<\/a>)/
 
   constructor(
     private renderer: Renderer2,
     private element: ElementRef) { }
 
+  @HostListener('focus')
+    convertFromLink() {
+      let content = this.element.nativeElement.value;
+      content = content.replace(this.fromHyperLinkToURL, '$2');
+      this.renderer.setProperty(this.element.nativeElement, 'value', content);
+    }
+
   @HostListener('blur')
-  ngOnInit() {
+  convertToLink() {
     const content = this.element.nativeElement.value;
 
     const foundUrls = content.match(this.urls);
