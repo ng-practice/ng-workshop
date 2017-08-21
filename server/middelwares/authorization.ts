@@ -15,7 +15,7 @@ export class AuthorizationMiddleware {
     } else {
       jwt.verify(req.headers['authorization'], this.secret, (err, decoded) => {
         if (err || decoded.role !== 'member') {
-          res.status(403).send('rejected');
+          res.status(401).send('Unauthorized');
         } else {
           next();
         }
