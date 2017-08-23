@@ -32,14 +32,14 @@ import { MemoService } from '../core/memo.service';
   styleUrls: ['./add-memo.component.scss']
 })
 export class AddMemoComponent implements OnInit {
-  @Output() create = new EventEmitter < Memo > ();
+  @Output() create = new EventEmitter<Memo>();
 
   memoForm: FormGroup;
   todosArray: FormArray = new FormArray([]);
   componentHasFocus = false;
 
   constructor(
-    public memoService: MemoService ) {}
+    public memoService: MemoService) { }
   ngOnInit() {
 
     this.memoForm = this.emptyForm();
@@ -53,7 +53,7 @@ export class AddMemoComponent implements OnInit {
     });
   }
 
-  emitCreatedBook(form: NgForm) {
+  emitCreatedBook() {
     const memo = new Memo(
       this.memoForm.controls.title.value,
       this.memoForm.controls.text.value, []
@@ -63,7 +63,7 @@ export class AddMemoComponent implements OnInit {
     memo.id = Math.random().toString().substr(3);
     this.create.emit(memo);
     this.memoForm = this.emptyForm();
-    form.resetForm();
+    this.memoForm.reset();
     this.componentHasFocus = false;
   }
 

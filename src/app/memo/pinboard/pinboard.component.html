@@ -1,8 +1,8 @@
-
-<tr-add-memo (create)=addMemo($event)></tr-add-memo>
+<tr-add-memo (create)=addMemo($event)>
+</tr-add-memo>
 <md-sidenav-container>
-<tr-memo-grid [memosInput]="memos | memoFilter:query"></tr-memo-grid>
-<md-sidenav #sidenav mode="side" align="end">
-  <router-outlet name="sidebar"></router-outlet>
-</md-sidenav>
+  <tr-memo-grid [memosInput]="memos | memoFilter:query"></tr-memo-grid>
+  <md-sidenav #sidenav mode="side" align="end">
+    <router-outlet name="sidebar"></router-outlet>
+  </md-sidenav>
 </md-sidenav-container>

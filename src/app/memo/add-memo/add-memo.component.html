@@ -1,12 +1,13 @@
 <md-card>
-    <md-card-title>Add Memo</md-card-title>
-  <form novalidate [formGroup]="memoForm" (ngSubmit)="emitCreatedBook(form)" #form="ngForm">
+  <form novalidate
+    [formGroup]="memoForm"
+    (ngSubmit)="emitCreatedBook()">
     <md-input-container>
       <input
         mdInput
         formControlName="title"
         type="text"
-        placeholder="title"
+        placeholder="Add note"
         (focus)="setFocus(true)">
       <md-error *ngIf="memoForm.controls.title.hasError('required')">
         Title is <strong>required</strong>
