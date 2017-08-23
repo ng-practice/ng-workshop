@@ -1,29 +1,9 @@
-import {
-  Component,
-  OnInit,
-  EventEmitter,
-  Output
-} from '@angular/core';
-import {
-  FormGroup,
-  FormControl,
-  Validators,
-  FormBuilder,
-  FormArray,
-  Form,
-  NgForm
-} from '@angular/forms';
-import {
-  MdButton,
-  MdCheckbox
-} from '@angular/material';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormArray, Form, NgForm } from '@angular/forms';
+import { MdButton, MdCheckbox } from '@angular/material';
 
-import {
-  Todo
-} from '../models/todo';
-import {
-  Memo
-} from '../models/memo';
+import { Memo, Todo } from '../models';
 import { MemoService } from '../core/memo.service';
 
 @Component({
@@ -38,10 +18,9 @@ export class AddMemoComponent implements OnInit {
   todosArray: FormArray = new FormArray([]);
   componentHasFocus = false;
 
-  constructor(
-    public memoService: MemoService) { }
-  ngOnInit() {
+  constructor(public memoService: MemoService) { }
 
+  ngOnInit() {
     this.memoForm = this.emptyForm();
   }
 
