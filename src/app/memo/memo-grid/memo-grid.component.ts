@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { MdGridList } from '@angular/material';
+
 import { Memo } from '../models/memo';
 import { MemoService } from '../core/memo.service';
 

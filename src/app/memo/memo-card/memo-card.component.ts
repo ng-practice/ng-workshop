@@ -11,9 +11,9 @@ import { Memo } from '../models/memo';
 })
 export class MemoCardComponent {
   @Input() memo: Memo;
-  @Output() deleted = new EventEmitter< Memo >();
+  @Output() delete = new EventEmitter<Memo>();
 
   removeMemo(memo: Memo) {
-    this.deleted.emit(memo);
+    this.delete.emit(memo);
   }
 }
