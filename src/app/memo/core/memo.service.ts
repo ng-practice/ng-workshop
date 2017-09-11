@@ -26,7 +26,7 @@ export class MemoService {
   }
 
   getAllFromApi() {
-    return this.http.get('http://localhost:4280/memos');
+    return this.http.get('http://localhost:4280/todos');
   }
 
   addMemo(memo: Memo) {
