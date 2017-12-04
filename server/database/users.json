@@ -1,5 +1,0 @@
-{
-  "users": [
-    { "email": "johndoe@example.com", "password": "test123", "role":"member" }
-  ]
-}

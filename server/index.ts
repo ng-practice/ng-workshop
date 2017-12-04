@@ -1,32 +1,20 @@
 import express = require('express');
-import bodyParser = require('body-parser');
+import jwt = require('express-jwt');
+import parse = require('body-parser');
 import cors = require('cors');
 
-import { MemosController } from './memos/controller';
-import { AuthController } from './auth/controller';
-import {AuthorizationMiddleware} from './middelwares/authorization';
-import { DatabaseInstance } from './database/database-instance';
-import { MemoDatabase } from './database/memo-database';
+import { Authentication } from './authentication/controller';
+import { Notes } from './notes/controller';
 
-const databaseInstance = new DatabaseInstance();
-databaseInstance.database.loadDatabase({}, (err, data) => {
-  console.log(data, err);
-  if (!err) {
-  const memoDatabase = new MemoDatabase(databaseInstance);
-  const authMiddleware = new AuthorizationMiddleware();
-  const memosController = new MemosController(memoDatabase);
+const server = express();
+const port = 4280;
+const secret = ':3K_sl;e&sd5K03)_dsl&k:sdTL;';
 
-  const app = express();
-  const port = 4280;
+server.use(parse.json());
+server.use(cors());
+server.use(jwt({ secret }).unless({ path: ['/login', '/register'] }));
 
-  app.use(bodyParser.json());
-  app.use(cors());
-  app.use(authMiddleware.instance);
-  app.use('/auth', AuthController);
-  app.use('/', memosController.instance);
+server.use('/',      new Authentication(secret).routes);
+server.use('/notes', new Notes().routes);
 
-  app.listen(port, () => console.log(`API runs at http://localhost:${port}`));
-  } else {
-    console.log(err);
-  }
-});
+server.listen(port, () => console.log(`API runs at http://localhost:${port}`));
